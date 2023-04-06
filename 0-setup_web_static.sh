@@ -8,8 +8,7 @@ sudo mkdir -p /data/web_static/releases/test/
 sudo mkdir -p /data/web_static/shared/
 
 #creating a dummy html file
-echo "
-<html>
+echo "<html>
   <head>
   </head>
   <body>
