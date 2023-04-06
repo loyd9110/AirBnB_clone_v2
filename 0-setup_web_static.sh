@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env bash
 #Install and config
 sudo apt-get update
 sudo apt-get install nginx -y
