@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 #Install and config
+
 sudo apt-get update
 sudo apt-get install nginx -y
 
@@ -8,7 +9,8 @@ sudo mkdir -p /data/web_static/releases/test/
 sudo mkdir -p /data/web_static/shared/
 
 #creating a dummy html file
-echo "<html>
+echo "<!DOCTYPE html> 
+<html>
   <head>
   </head>
   <body>
