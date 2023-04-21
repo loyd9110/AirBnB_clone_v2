@@ -24,7 +24,7 @@ def index_c_is_fun(text):
 
 
 @app.route("/python", strict_slashes=False)
-@app.route("/python/(<text>", strict_slashes=False)
+@app.route("/python/<text>", strict_slashes=False)
 def index_python(text="is cool"):
     """func that displays python and value of text"""
     return "Python " + text.replace("_", " ")
