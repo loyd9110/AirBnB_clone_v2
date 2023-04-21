@@ -20,14 +20,20 @@ def index_hbnb():
 @app.route("/c/<text>", strict_slashes=False)
 def index_c_is_fun(text):
     """func displays C is fun"""
-    return f'C {text.replace("_", " ")}'
+    return "C " + text.replace("_", " ")
 
 
 @app.route("/python", strict_slashes=False)
-@app.route("/python/(<text>", strict_slashes=False)
+@app.route("/python/<text>", strict_slashes=False)
 def index_python(text="is cool"):
     """func that displays python and value of text"""
     return "Python " + text.replace("_", " ")
+
+
+@app.route("/number/<n>", strict_slashes=False)
+def index_number(n):
+    """Return a number"""
+    return "{} is a number".format(n)
 
 
 if __name__ == "__main__":
