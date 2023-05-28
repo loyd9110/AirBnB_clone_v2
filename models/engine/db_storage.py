@@ -20,8 +20,11 @@ class DBStorage():
     def __init__(self):
         """ initiliazes the class """
         self.__engine = create_engine(
-             f'mysql+mysqldb://{user}:{password}@{host}/{database}',
-             pool_pre_ping=True
+                "mysql+mysqldb://{}:{}@{}/{}".format(user,
+                                                 password,
+                                                 host,
+                                                 database),
+                pool_pre_ping=True
         )
         hbnd_env = os.environ.get('HBNB_ENV')
         if (hbnd_env == "test"):
@@ -51,7 +54,6 @@ class DBStorage():
         for obj in results:
             key = "{}.{}".format(obj.__class__.__name__, obj.id)
             objects[key] = obj
-        self.__session.close()
         return objects
 
     def new(self, obj):
@@ -70,6 +72,7 @@ class DBStorage():
             self.__session.delete(obj)
 
     def reload(self):
+        """Reloads objects from the db"""
         from models.base_model import BaseModel
         from models.user import User
         from models.place import Place
@@ -82,11 +85,9 @@ class DBStorage():
         Base.metadata.create_all(self.__engine)
 
         # create the current database session
-        session_factory = sessionmaker(
-            bind=self.__engine,
-            expire_on_commit=False
-        )
-        self.__session = scoped_session(session_factory)
+        Session = scoped_session(sessionmaker(bind=self.__engine,
+                                              expire_on_commit=True))
+        self.__session = Session()
 
     def close(self):
         """Call remove method"""
